@@ -2,20 +2,16 @@
 local fx = require( "com.ponywolf.ponyfx" )
 local composer = require( "composer" )
 
--- Define module
 local M = {}
 
 function M.new( instance, options )
-	-- Get the current scene
 	local scene = composer.getScene( composer.getSceneName( "current" ) )
 
-	-- Default options for instance
-	options = options or {}
-
-	-- Store map placement and hide placeholder
+	--Grab custom properties set in the map editor 
 	instance.isVisible = false
 	local parent = instance.parent
 	local x, y = instance.x, instance.y
+	local world, nextLevel, currentLevel = instance.world, instance.nextLevel, instance,currentLevel
 
 	-- Load spritesheet
 	local sheetData = { width = 80, height = 110, numFrames = 27, sheetContentWidth = 720, sheetContentHeight = 330 }
@@ -24,13 +20,12 @@ function M.new( instance, options )
 		{ name = "idle", frames = { 1 } },
 		{ name = "walk", frames = { 10,11,1 }, time = 300, loopCount = 0 },
 		{ name = "jump", frames = { 2 } },
-		{ name = "ouch", frames = { 7 } },
+		{ name = "dead", frames = { 5 } },
 	}
 	instance = display.newSprite( parent, sheet, sequenceData )
 	instance.x,instance.y = x, y
 	instance:setSequence( "idle" )
 
-	-- Add physics
 	physics.addBody( instance, "dynamic", { density = 3, bounce = 0, friction =  5.0 } )
 	instance.isFixedRotation = true
 
@@ -39,7 +34,8 @@ function M.new( instance, options )
 	local function key( event )
 		local phase = event.phase
 		local name = event.keyName
-		if ( phase == lastEvent.phase ) and ( name == lastEvent.keyName ) then return false end  -- Filter repeating keys
+		--Filter Reapeating 
+		if ( phase == lastEvent.phase ) and ( name == lastEvent.keyName ) then return false end  
 		if phase == "down" then
 			if "right" == name or "d" == name then
 				right = acceleration
@@ -69,7 +65,7 @@ function M.new( instance, options )
 
 	function instance:jump()
 		if not self.jumping then
-			self:applyLinearImpulse( 0, -500 )
+			self:applyLinearImpulse( 0, -600 )
 			instance:setSequence( "jump" )
 			self.jumping = true
 		end
@@ -90,9 +86,9 @@ function M.new( instance, options )
 	function instance:collision( event )
 		local phase = event.phase
 		local other = event.other
-		local y1, y2 = self.y + 50, other.y - ( other.type == "enemy" and 25 or other.height/2 )
 		local vx, vy = self:getLinearVelocity()
-		if phase == "began" then
+
+		if phase == "began" then 
 			if self.jumping and vy > 0 then
 				-- Landed after jumping
 				self.jumping = false
@@ -103,30 +99,38 @@ function M.new( instance, options )
 					self:setSequence( "idle" )
 				end
 			end
+
+			if other.type == "water" then
+
+				instance:setSequence( "dead" )
+				instance:play()
+
+				fx.fadeOut( function()
+					composer.removeScene(world)
+					composer.gotoScene( world,
+						 { params = { map = currentLevel } } )
+				end )
+			elseif phase == "began" and other.type == "gem" then 
+				fx.fadeOut( function()
+					composer.removeScene(world)
+					composer.gotoScene( world,
+						 { params = { map = nextLevel } } )
+				end )
+			end
 		end
-	end
+ 	end
 
 	function instance:finalize()
 		Runtime:removeEventListener( "enterFrame", enterFrame )
 		Runtime:removeEventListener( "key", key )
 		instance:removeEventListener( "collision" )
-		Runtime:removeEventListener( "enterFrame", enterFrame )
 	end
 
-	Runtime:removeEventListener( "key", key )
 	Runtime:addEventListener( "enterFrame", enterFrame )
-
-	instance:addEventListener( "finalize" )
-
-	-- Add our enterFrame listener
-	--Runtime:addEventListener( "enterFrame", enterFrame )
-
-	-- Add our key/joystick listeners
 	Runtime:addEventListener( "key", key )
+	instance:addEventListener( "finalize" )
 	instance:addEventListener( "collision" )
 
-
-	-- Return instance
 	instance.name = "player"
 	instance.type = "player"
 	return instance

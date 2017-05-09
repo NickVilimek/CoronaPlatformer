@@ -1,14 +1,9 @@
--- Include the Composer library
 local composer = require( "composer" )
+local visualMonitor = require( "com.ponywolf.visualMonitor" )
+local joypad = require( "com.ponywolf.joykey" )
+local joystick = require("com.ponywolf.vjoy")
 
 display.setStatusBar( display.HiddenStatusBar ) 
-
--- Removes bottom bar on Android 
-if system.getInfo( "androidApiLevel" ) and system.getInfo( "androidApiLevel" ) < 19 then
-	native.setProperty( "androidSystemUiVisibility", "lowProfile" )
-else
-	native.setProperty( "androidSystemUiVisibility", "immersiveSticky" ) 
-end
 
 -- Corona simulator 
 local isSimulator = "simulator" == system.getInfo( "environment" )
@@ -16,9 +11,6 @@ local isMobile = ( "ios" == system.getInfo("platform") ) or ( "android" == syste
 
 -- Debugging on simulator 
 if isSimulator then 
-
-	-- Show FPS
-	local visualMonitor = require( "com.ponywolf.visualMonitor" )
 	local visMon = visualMonitor:new()
 	visMon.isVisible = false
 
@@ -35,15 +27,14 @@ if isSimulator then
 end
 
 -- Add joystick to screen 
-require( "com.ponywolf.joykey" ).start()
+joypad.start()
 system.activate("multitouch")
 
 if isMobile or isSimulator then
-	local vjoy = require( "com.ponywolf.vjoy" )
-	local stick = vjoy.newStick()
+	local stick = joystick.newStick()
 	stick.xScale, stick.yScale = 0.5, 0.5
 	stick.x, stick.y = -192, display.contentHeight - 96
-	local button = vjoy.newButton()
+	local button = joystick.newButton()
 	button.x, button.y = display.contentWidth + 128 + 32, display.contentHeight - 96
 end
 

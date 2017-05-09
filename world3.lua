@@ -6,7 +6,7 @@ local physics = require( "physics" )
 local json = require( "json" )
 
 -- Variables local to scene
-local map, player, gem
+local map, player
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -20,7 +20,7 @@ function scene:create( event )
 	physics.setGravity( 0, 20 )
 
 	-- Load our map
-	local filename = event.params.map or "levels/world1level1.json"
+	local filename = "levels/level1.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
 	map = tiled.new( mapData, "levels" )
 	map.x,map.y = display.contentCenterX - map.designedWidth/2, display.contentCenterY - map.designedHeight/2
@@ -30,9 +30,7 @@ function scene:create( event )
 	map.extensions = "classes."
 	map:extend( "player" )
 	player = map:findObject( "player" )
-	--player.filename = filename
-
-	map:extend("gem","water")
+	player.filename = filename
 
 	sceneGroup:insert( map )
 
