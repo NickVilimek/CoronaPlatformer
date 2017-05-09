@@ -5,13 +5,10 @@ local tiled = require( "com.ponywolf.ponytiled" )
 local physics = require( "physics" )
 local json = require( "json" )
 
--- Variables local to scene
 local map, player, gem
 
--- Create a new Composer scene
 local scene = composer.newScene()
 
--- This function is called when scene is created
 function scene:create( event )
 
 	local sceneGroup = self.view  
@@ -20,7 +17,7 @@ function scene:create( event )
 	physics.setGravity( 0, 20 )
 
 	-- Load our map
-	local filename = event.params.map or "levels/world1level1.json"
+	local filename = event.params.map or "levels/world1level5.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
 	map = tiled.new( mapData, "levels" )
 	map.x,map.y = display.contentCenterX - map.designedWidth/2, display.contentCenterY - map.designedHeight/2
@@ -28,16 +25,18 @@ function scene:create( event )
 	
 	--Player
 	map.extensions = "classes."
-	map:extend( "player" )
-	player = map:findObject( "player" )
-	--player.filename = filename
+	map:extend( "player", "gem", "water" )
 
-	map:extend("gem","water")
+	--Give player parameters about the map
+	player = map:findObject( "player" )
+	player.map = filename
+	player.world = "world1"
 
 	sceneGroup:insert( map )
 
 end
 
+--World 1: this moves the screen with the player 
 local function enterFrame( event )
 
 	local elapsed = event.time

@@ -9030,17 +9030,11 @@
                  "name":"player",
                  "properties":
                     {
-                     "currentLevel":"levels\/world1level2.json",
-                     "jumping":false,
-                     "nextLevel":"levels\/world1level3.json",
-                     "world":"world1"
+                     "jumping":false
                     },
                  "propertytypes":
                     {
-                     "currentLevel":"string",
-                     "jumping":"bool",
-                     "nextLevel":"string",
-                     "world":"string"
+                     "jumping":"bool"
                     },
                  "rotation":0,
                  "type":"player",
@@ -9056,11 +9050,13 @@
                  "name":"gem",
                  "properties":
                     {
-                     "nextLevel":"levels\/world1level3.json"
+                     "nextLevel":"levels\/world1level3.json",
+                     "world":"world1"
                     },
                  "propertytypes":
                     {
-                     "nextLevel":"string"
+                     "nextLevel":"string",
+                     "world":"string"
                     },
                  "rotation":0,
                  "type":"gem",
@@ -9220,7 +9216,7 @@
                 },
              "2":
                 {
-                 "image":"..\/..\/..\/..\/Downloads\/e2a896820b24aecdfb24929d6b860c14_diamond-clip-art-png-clipart-panda-free-clipart-images-diamonds-clipart-png_1024-1024.png"
+                 "image":"resources\/gem.png"
                 },
              "3":
                 {

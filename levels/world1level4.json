@@ -270,7 +270,7 @@
          "name":"Water",
          "objects":[
                 {
-                 "gid":25,
+                 "gid":26,
                  "height":1536,
                  "id":1548,
                  "name":"water",
@@ -9740,10 +9740,20 @@
                  "y":2688
                 }, 
                 {
-                 "gid":24,
+                 "gid":25,
                  "height":80,
                  "id":1723,
                  "name":"gem",
+                 "properties":
+                    {
+                     "nextLevel":"levels\/world1level5.json",
+                     "world":"world1"
+                    },
+                 "propertytypes":
+                    {
+                     "nextLevel":"string",
+                     "world":"string"
+                    },
                  "rotation":0,
                  "type":"gem",
                  "visible":true,
@@ -11346,23 +11356,17 @@
          "name":"Game",
          "objects":[
                 {
-                 "gid":21,
+                 "gid":22,
                  "height":110,
                  "id":507,
                  "name":"player",
                  "properties":
                     {
-                     "currentLevel":"levels\/world1level4.json",
-                     "jumping":false,
-                     "nextLevel":"levels\/world1level5.json",
-                     "world":"world1"
+                     "jumping":false
                     },
                  "propertytypes":
                     {
-                     "currentLevel":"string",
-                     "jumping":"bool",
-                     "nextLevel":"string",
-                     "world":"string"
+                     "jumping":"bool"
                     },
                  "rotation":0,
                  "type":"player",
@@ -11378,7 +11382,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":1902,
+ "nextobjectid":1903,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":16,
@@ -11410,7 +11414,7 @@
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":18,
+         "tilecount":19,
          "tileheight":128,
          "tiles":
             {
@@ -11454,6 +11458,10 @@
                 {
                  "image":"resources\/grassRight.png"
                 },
+             "18":
+                {
+                 "image":"resources\/cloud.png"
+                },
              "2":
                 {
                  "image":"resources\/grassHill_right.png"
@@ -11491,7 +11499,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":21,
+         "firstgid":22,
          "margin":0,
          "name":"player",
          "spacing":0,
@@ -11508,7 +11516,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":22,
+         "firstgid":23,
          "margin":0,
          "name":"player",
          "spacing":0,
@@ -11536,7 +11544,7 @@
                 },
              "2":
                 {
-                 "image":"..\/..\/..\/..\/Downloads\/e2a896820b24aecdfb24929d6b860c14_diamond-clip-art-png-clipart-panda-free-clipart-images-diamonds-clipart-png_1024-1024.png"
+                 "image":"resources\/gem.png"
                 },
              "3":
                 {

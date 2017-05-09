@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="512" height="128" tilewidth="16" tileheight="16" nextobjectid="19">
+ <tileset firstgid="1" name="background" tilewidth="785" tileheight="442" tilecount="1" columns="0">
+  <tile id="0">
+   <image width="785" height="442" source="resources/skybackground.jpg"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="clouds" tilewidth="128" tileheight="92" tilecount="1" columns="0">
+  <tile id="2">
+   <image width="128" height="92" source="resources/cloud.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="5" name="player" tilewidth="80" tileheight="110" tilecount="1" columns="0">
+  <tile id="0">
+   <image width="80" height="110" source="resources/adventurer_idle.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="6" name="gem" tilewidth="704" tileheight="640" tilecount="1" columns="0">
+  <tile id="0">
+   <image width="704" height="640" source="resources/gem.png"/>
+  </tile>
+ </tileset>
+ <objectgroup name="background">
+  <properties>
+   <property name="bodyType" value="static"/>
+   <property name="friction" type="float" value="0.3"/>
+  </properties>
+  <object id="3" gid="1" x="0" y="2048" width="4096" height="2048"/>
+  <object id="4" gid="1" x="4096" y="2048" width="4096" height="2048"/>
+ </objectgroup>
+ <objectgroup name="cloud">
+  <object id="13" name="gem" type="gem" gid="6" x="2243.24" y="797.143" width="88" height="80">
+   <properties>
+    <property name="nextLevel" value="levels/world2level1.json"/>
+    <property name="world" value="world2"/>
+   </properties>
+  </object>
+  <object id="16" gid="4" x="1309.33" y="1222.67" width="256" height="184">
+   <properties>
+    <property name="bodyType" value="static"/>
+    <property name="friction" type="float" value="0.3"/>
+   </properties>
+  </object>
+  <object id="17" gid="4" x="2219.33" y="919.333" width="128" height="92">
+   <properties>
+    <property name="bodyType" value="static"/>
+    <property name="friction" type="float" value="0.3"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="game">
+  <object id="9" name="player" type="player" gid="5" x="1401.9" y="1024.52" width="80" height="110">
+   <properties>
+    <property name="jumping" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

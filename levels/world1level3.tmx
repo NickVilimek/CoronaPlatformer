@@ -77,7 +77,7 @@
    <properties>
     <property name="nextLevel" value="levels/world1level1.json"/>
    </properties>
-   <image width="704" height="640" source="../../../../Downloads/e2a896820b24aecdfb24929d6b860c14_diamond-clip-art-png-clipart-panda-free-clipart-images-diamonds-clipart-png_1024-1024.png"/>
+   <image width="704" height="640" source="resources/gem.png"/>
   </tile>
   <tile id="3">
    <image width="32" height="32" source="resources/waterTile.png"/>
@@ -1248,7 +1248,12 @@
   <object id="1720" gid="16" x="1920" y="2816" width="128" height="128"/>
   <object id="1721" gid="16" x="1920" y="2688" width="128" height="128"/>
   <object id="1722" gid="16" x="1920" y="2560" width="128" height="128"/>
-  <object id="1723" name="gem" type="gem" gid="24" x="3828" y="1360" width="88" height="80"/>
+  <object id="1723" name="gem" type="gem" gid="24" x="3828" y="1360" width="88" height="80">
+   <properties>
+    <property name="nextLevel" value="levels/world1level4.json"/>
+    <property name="world" value="world1"/>
+   </properties>
+  </object>
   <object id="1724" gid="16" x="4732" y="2560" width="128" height="128"/>
   <object id="1725" gid="16" x="4604" y="2560" width="128" height="128"/>
   <object id="1726" gid="16" x="4860" y="2304" width="128" height="128"/>
@@ -1349,10 +1354,7 @@
  <objectgroup name="Game">
   <object id="507" name="player" type="player" gid="21" x="411.03" y="1465.55" width="80" height="110">
    <properties>
-    <property name="currentLevel" value="levels/world1level3.json"/>
     <property name="jumping" type="bool" value="false"/>
-    <property name="nextLevel" value="levels/world1level4.json"/>
-    <property name="world" value="world1"/>
    </properties>
   </object>
  </objectgroup>

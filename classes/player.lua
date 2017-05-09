@@ -11,7 +11,6 @@ function M.new( instance, options )
 	instance.isVisible = false
 	local parent = instance.parent
 	local x, y = instance.x, instance.y
-	local world, nextLevel, currentLevel = instance.world, instance.nextLevel, instance,currentLevel
 
 	-- Load spritesheet
 	local sheetData = { width = 80, height = 110, numFrames = 27, sheetContentWidth = 720, sheetContentHeight = 330 }
@@ -26,6 +25,7 @@ function M.new( instance, options )
 	instance.x,instance.y = x, y
 	instance:setSequence( "idle" )
 
+	--Add Physics
 	physics.addBody( instance, "dynamic", { density = 3, bounce = 0, friction =  5.0 } )
 	instance.isFixedRotation = true
 
@@ -38,12 +38,10 @@ function M.new( instance, options )
 		if ( phase == lastEvent.phase ) and ( name == lastEvent.keyName ) then return false end  
 		if phase == "down" then
 			if "right" == name or "d" == name then
-				right = acceleration
-				flip = 0.133
+				right, flip = acceleration, 0.133
 			end
 			if "left" == name or "a" == name then
-				left = -acceleration
-				flip = -0.133
+				left, flip = -acceleration, -0.133
 			end
 			if "space" == name or "buttonA" == name or "button1" == name then
 				instance:jump()
@@ -71,17 +69,30 @@ function M.new( instance, options )
 		end
 	end
 
+	--Moves character the correct ammount
 	local function enterFrame()
-		-- Do this every frame
 		local vx, vy = instance:getLinearVelocity()
 		local dx = right + left
+
 		if instance.jumping then dx = dx / 4 end
 		if ( dx < 0 and vx > -max ) or ( dx > 0 and vx < max ) then
 			instance:applyForce( dx or 0, 0, instance.x, instance.y )
 		end
-		-- Turn around
+
 		instance.xScale = math.min( 1, math.max( instance.xScale + flip, -1 ) )
 	end
+
+	--Refreshes level 
+	function instance:died()
+		instance:setSequence( "dead" )
+		instance:play()
+
+		fx.fadeOut( function()
+				composer.gotoScene( "refresh", { params = { map = self.map, world = self.world } } )
+			end, 300, 300 )
+
+		self:finalize()
+	end 
 
 	function instance:collision( event )
 		local phase = event.phase
@@ -89,7 +100,10 @@ function M.new( instance, options )
 		local vx, vy = self:getLinearVelocity()
 
 		if phase == "began" then 
-			if self.jumping and vy > 0 then
+
+			if other.type == "water" then
+					instance:died()
+			elseif self.jumping and vy > 0 then
 				-- Landed after jumping
 				self.jumping = false
 				if not ( left == 0 and right == 0 ) and not instance.jumping then
@@ -100,23 +114,7 @@ function M.new( instance, options )
 				end
 			end
 
-			if other.type == "water" then
 
-				instance:setSequence( "dead" )
-				instance:play()
-
-				fx.fadeOut( function()
-					composer.removeScene(world)
-					composer.gotoScene( world,
-						 { params = { map = currentLevel } } )
-				end )
-			elseif phase == "began" and other.type == "gem" then 
-				fx.fadeOut( function()
-					composer.removeScene(world)
-					composer.gotoScene( world,
-						 { params = { map = nextLevel } } )
-				end )
-			end
 		end
  	end
 

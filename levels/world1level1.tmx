@@ -69,7 +69,7 @@
    <image width="80" height="110" source="resources/adventurer_idle.png"/>
   </tile>
   <tile id="2">
-   <image width="704" height="640" source="../../../../Downloads/e2a896820b24aecdfb24929d6b860c14_diamond-clip-art-png-clipart-panda-free-clipart-images-diamonds-clipart-png_1024-1024.png"/>
+   <image width="704" height="640" source="resources/gem.png"/>
   </tile>
  </tileset>
  <objectgroup name="Background">
@@ -1055,15 +1055,13 @@
  <objectgroup name="Game">
   <object id="507" name="player" type="player" gid="21" x="411.03" y="1465.55" width="80" height="110">
    <properties>
-    <property name="currentLevel" value="levels/world1level1.json"/>
     <property name="jumping" type="bool" value="false"/>
-    <property name="nextLevel" value="levels/world1level2.json"/>
-    <property name="world" value="world1"/>
    </properties>
   </object>
   <object id="1532" name="gem" type="gem" gid="23" x="868" y="692" width="88" height="80">
    <properties>
     <property name="nextLevel" value="levels/world1level2.json"/>
+    <property name="world" value="world1"/>
    </properties>
   </object>
  </objectgroup>
