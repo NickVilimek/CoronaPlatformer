@@ -41,4 +41,4 @@ end
 -- reserve music channel
 audio.reserveChannels(1)
 
-composer.gotoScene( "world1", { params={ } } )
+composer.gotoScene( "world2", { params={ world = "world2" } } )

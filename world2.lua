@@ -27,14 +27,11 @@ function scene:create( event )
 	map.xScale, map.yScale = .45, .45
 	
 	--Player
-	--Player
 	map.extensions = "classes."
 	map:extend( "player", "gem", "water" )
 	player = map:findObject( "player" )
 	player.map = filename
 	player.world = "world2"
-
-	gem = map:findObject("gem")
 
 	sceneGroup:insert( map )
 
@@ -44,11 +41,7 @@ local function enterFrame( event )
 
 	local elapsed = event.time
 	if player and player.x and player.y then
-		--local x, y = player:localToContent( 0, 0 )
-		--x, y = display.contentCenterX - x, display.contentCenterY - y
-		--map.x, map.y = map.x + x, map.y + y
-		--map.y = map.y + y
-		map.x = map.x - 0.6
+		map.x = map.x - 1
 	end
 end
 

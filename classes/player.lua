@@ -4,6 +4,8 @@ local composer = require( "composer" )
 
 local M = {}
 
+local world
+
 function M.new( instance, options )
 	local scene = composer.getScene( composer.getSceneName( "current" ) )
 
@@ -11,7 +13,6 @@ function M.new( instance, options )
 	instance.isVisible = false
 	local parent = instance.parent
 	local x, y = instance.x, instance.y
-
 	-- Load spritesheet
 	local sheetData = { width = 80, height = 110, numFrames = 27, sheetContentWidth = 720, sheetContentHeight = 330 }
 	local sheet = graphics.newImageSheet( "images/adventurer_tilesheet.png", sheetData )
@@ -69,8 +70,23 @@ function M.new( instance, options )
 		end
 	end
 
+	function instance:setWorld() 
+		world = self.world
+	end
+
 	--Moves character the correct ammount
 	local function enterFrame()
+
+		if(world == nil) then
+			instance:setWorld()
+		end
+
+		if (world == "world2") then 
+			local _x, _y = instance:localToContent(0,0)
+			if(_y > 500 or _x < -340) then
+				instance:died()
+			end
+		end 
 		local vx, vy = instance:getLinearVelocity()
 		local dx = right + left
 
@@ -98,12 +114,12 @@ function M.new( instance, options )
 		local phase = event.phase
 		local other = event.other
 		local vx, vy = self:getLinearVelocity()
-
 		if phase == "began" then 
-
-			if other.type == "water" then
+			if other.type == "water" or other.name == "boundary" then
 					instance:died()
-			elseif self.jumping and vy > 0 then
+			end
+
+			if self.jumping and vy > 0 then
 				-- Landed after jumping
 				self.jumping = false
 				if not ( left == 0 and right == 0 ) and not instance.jumping then
