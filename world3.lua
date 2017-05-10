@@ -20,15 +20,15 @@ function scene:create( event )
 	physics.setGravity( 0, 20 )
 
 	-- Load our map
-	local filename = "levels/level1.json"
+	local filename = event.params.map or "levels/world3level1.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
 	map = tiled.new( mapData, "levels" )
 	map.x,map.y = display.contentCenterX - map.designedWidth/2, display.contentCenterY - map.designedHeight/2
-	map.xScale, map.yScale = .5, .5
+	map.xScale, map.yScale = .4, .4
 	
 	--Player
 	map.extensions = "classes."
-	map:extend( "player" )
+	map:extend( "player" ,"gem")
 	player = map:findObject( "player" )
 	player.filename = filename
 

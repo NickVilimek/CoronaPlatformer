@@ -58,7 +58,7 @@
                  "name":"gem",
                  "properties":
                     {
-                     "nextLevel":"levels\/world2level2.json",
+                     "nextLevel":"levels\/world2level3.json",
                      "world":"world2"
                     },
                  "propertytypes":
@@ -70,8 +70,8 @@
                  "type":"gem",
                  "visible":true,
                  "width":88,
-                 "x":3840,
-                 "y":928
+                 "x":4768,
+                 "y":656
                 }, 
                 {
                  "gid":4,
@@ -97,7 +97,7 @@
                 }, 
                 {
                  "gid":4,
-                 "height":182,
+                 "height":92,
                  "id":17,
                  "name":"",
                  "properties":
@@ -113,13 +113,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":256,
-                 "x":2048,
-                 "y":1200
+                 "width":128,
+                 "x":2061.33,
+                 "y":1050
                 }, 
                 {
                  "gid":4,
-                 "height":182,
+                 "height":92,
                  "id":19,
                  "name":"",
                  "properties":
@@ -135,13 +135,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":256,
-                 "x":2816,
-                 "y":1184
+                 "width":128,
+                 "x":2652.67,
+                 "y":820.667
                 }, 
                 {
                  "gid":4,
-                 "height":182,
+                 "height":92,
                  "id":20,
                  "name":"",
                  "properties":
@@ -157,9 +157,53 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
+                 "width":128,
+                 "x":3376,
+                 "y":1027.33
+                }, 
+                {
+                 "gid":4,
+                 "height":184,
+                 "id":21,
+                 "name":"",
+                 "properties":
+                    {
+                     "bodyType":"static",
+                     "friction":0.3
+                    },
+                 "propertytypes":
+                    {
+                     "bodyType":"string",
+                     "friction":"float"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
                  "width":256,
-                 "x":3752.67,
-                 "y":1184
+                 "x":4176,
+                 "y":1360
+                }, 
+                {
+                 "gid":4,
+                 "height":92,
+                 "id":22,
+                 "name":"",
+                 "properties":
+                    {
+                     "bodyType":"static",
+                     "friction":0.3
+                    },
+                 "propertytypes":
+                    {
+                     "bodyType":"string",
+                     "friction":"float"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":4752,
+                 "y":1008
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -202,7 +246,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":21,
+ "nextobjectid":23,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":16,

@@ -39,7 +39,6 @@ end
 --World 1: this moves the screen with the player 
 local function enterFrame( event )
 
-	local elapsed = event.time
 	if player and player.x and player.y then
 		local x, y = player:localToContent( 0, 0 )
 		x, y = display.contentCenterX - x, display.contentCenterY - y

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="512" height="128" tilewidth="16" tileheight="16" nextobjectid="21">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="512" height="128" tilewidth="16" tileheight="16" nextobjectid="23">
  <tileset firstgid="1" name="background" tilewidth="785" tileheight="442" tilecount="1" columns="0">
   <tile id="0">
    <image width="785" height="442" source="resources/skybackground.jpg"/>
@@ -29,9 +29,9 @@
   <object id="4" gid="1" x="4096" y="2048" width="4096" height="2048"/>
  </objectgroup>
  <objectgroup name="cloud">
-  <object id="13" name="gem" type="gem" gid="6" x="3840" y="928" width="88" height="80">
+  <object id="13" name="gem" type="gem" gid="6" x="4768" y="656" width="88" height="80">
    <properties>
-    <property name="nextLevel" value="levels/world2level2.json"/>
+    <property name="nextLevel" value="levels/world2level3.json"/>
     <property name="world" value="world2"/>
    </properties>
   </object>
@@ -41,19 +41,31 @@
     <property name="friction" type="float" value="0.3"/>
    </properties>
   </object>
-  <object id="17" gid="4" x="2048" y="1200" width="256" height="182">
+  <object id="17" gid="4" x="2061.33" y="1050" width="128" height="92">
    <properties>
     <property name="bodyType" value="static"/>
     <property name="friction" type="float" value="0.3"/>
    </properties>
   </object>
-  <object id="19" gid="4" x="2816" y="1184" width="256" height="182">
+  <object id="19" gid="4" x="2652.67" y="820.667" width="128" height="92">
    <properties>
     <property name="bodyType" value="static"/>
     <property name="friction" type="float" value="0.3"/>
    </properties>
   </object>
-  <object id="20" gid="4" x="3752.67" y="1184" width="256" height="182">
+  <object id="20" gid="4" x="3376" y="1027.33" width="128" height="92">
+   <properties>
+    <property name="bodyType" value="static"/>
+    <property name="friction" type="float" value="0.3"/>
+   </properties>
+  </object>
+  <object id="21" gid="4" x="4176" y="1360" width="256" height="184">
+   <properties>
+    <property name="bodyType" value="static"/>
+    <property name="friction" type="float" value="0.3"/>
+   </properties>
+  </object>
+  <object id="22" gid="4" x="4752" y="1008" width="128" height="92">
    <properties>
     <property name="bodyType" value="static"/>
     <property name="friction" type="float" value="0.3"/>

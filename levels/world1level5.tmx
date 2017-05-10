@@ -1403,9 +1403,10 @@
   </object>
  </objectgroup>
  <objectgroup name="Game">
-  <object id="507" name="player" type="player" gid="21" x="2056.03" y="1460.55" width="80" height="110">
+  <object id="507" name="player" type="player" gid="21" x="2045.03" y="1428.55" width="80" height="110">
    <properties>
     <property name="jumping" type="bool" value="false"/>
+    <property name="world" value="world1"/>
    </properties>
   </object>
  </objectgroup>

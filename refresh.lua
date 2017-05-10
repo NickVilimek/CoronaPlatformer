@@ -11,8 +11,6 @@ function scene:show( event )
 
 	counter = counter + 1
 
-	print(tostring(counter))
-
 	local phase = event.phase
 	local options = { params = event.params }
 	if ( phase == "will" ) then

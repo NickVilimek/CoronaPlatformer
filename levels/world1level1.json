@@ -8898,11 +8898,13 @@
                  "name":"player",
                  "properties":
                     {
-                     "jumping":false
+                     "jumping":false,
+                     "world":"world1"
                     },
                  "propertytypes":
                     {
-                     "jumping":"bool"
+                     "jumping":"bool",
+                     "world":"string"
                     },
                  "rotation":0,
                  "type":"player",

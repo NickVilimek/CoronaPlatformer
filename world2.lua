@@ -17,10 +17,9 @@ function scene:create( event )
 	local sceneGroup = self.view  
 
 	physics.start()
-	physics.setGravity( 0, 20 )
-
+	physics.setGravity( 0, 23 )
 	-- Load our map
-	local filename = event.params.map or "levels/world2level1.json"
+	local filename = event.params.map or "levels/world2level5.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
 	map = tiled.new( mapData, "levels" )
 	map.x,map.y = -600, -100
@@ -28,7 +27,7 @@ function scene:create( event )
 	
 	--Player
 	map.extensions = "classes."
-	map:extend( "player", "gem", "water" )
+	map:extend( "player", "gem" )
 	player = map:findObject( "player" )
 	player.map = filename
 	player.world = "world2"
@@ -41,7 +40,7 @@ local function enterFrame( event )
 
 	local elapsed = event.time
 	if player and player.x and player.y then
-		map.x = map.x - 1
+		map.x = map.x - 2.1
 	end
 end
 

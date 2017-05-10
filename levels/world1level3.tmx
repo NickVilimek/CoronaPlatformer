@@ -1355,6 +1355,7 @@
   <object id="507" name="player" type="player" gid="21" x="411.03" y="1465.55" width="80" height="110">
    <properties>
     <property name="jumping" type="bool" value="false"/>
+    <property name="world" value="world1"/>
    </properties>
   </object>
  </objectgroup>

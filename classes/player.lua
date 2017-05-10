@@ -4,15 +4,15 @@ local composer = require( "composer" )
 
 local M = {}
 
-local world
-
 function M.new( instance, options )
 	local scene = composer.getScene( composer.getSceneName( "current" ) )
 
-	--Grab custom properties set in the map editor 
+	--Set some custom properties 
 	instance.isVisible = false
 	local parent = instance.parent
 	local x, y = instance.x, instance.y
+	local world = instance.world
+
 	-- Load spritesheet
 	local sheetData = { width = 80, height = 110, numFrames = 27, sheetContentWidth = 720, sheetContentHeight = 330 }
 	local sheet = graphics.newImageSheet( "images/adventurer_tilesheet.png", sheetData )
@@ -20,7 +20,7 @@ function M.new( instance, options )
 		{ name = "idle", frames = { 1 } },
 		{ name = "walk", frames = { 10,11,1 }, time = 300, loopCount = 0 },
 		{ name = "jump", frames = { 2 } },
-		{ name = "dead", frames = { 5 } },
+		{ name = "dead", frames = { 5 } }
 	}
 	instance = display.newSprite( parent, sheet, sequenceData )
 	instance.x,instance.y = x, y
@@ -32,11 +32,12 @@ function M.new( instance, options )
 
 	local max, acceleration, left, right, flip = 400, 2200, 0, 0, 0
 	local lastEvent = {}
+
 	local function key( event )
-		local phase = event.phase
-		local name = event.keyName
-		--Filter Reapeating 
+		local phase, name  = event.phase, event.keyName
+		--Filter Repeating 
 		if ( phase == lastEvent.phase ) and ( name == lastEvent.keyName ) then return false end  
+
 		if phase == "down" then
 			if "right" == name or "d" == name then
 				right, flip = acceleration, 0.133
@@ -70,23 +71,15 @@ function M.new( instance, options )
 		end
 	end
 
-	function instance:setWorld() 
-		world = self.world
-	end
-
 	--Moves character the correct ammount
-	local function enterFrame()
-
-		if(world == nil) then
-			instance:setWorld()
-		end
-
-		if (world == "world2") then 
+	local function enterFrame(event)
+		if world == "world2" then 
 			local _x, _y = instance:localToContent(0,0)
 			if(_y > 500 or _x < -340) then
 				instance:died()
 			end
 		end 
+
 		local vx, vy = instance:getLinearVelocity()
 		local dx = right + left
 
@@ -103,11 +96,15 @@ function M.new( instance, options )
 		instance:setSequence( "dead" )
 		instance:play()
 
+		self:setLinearVelocity(0,0)
+
 		fx.fadeOut( function()
 				composer.gotoScene( "refresh", { params = { map = self.map, world = self.world } } )
-			end, 300, 300 )
+			end, 1000, 300 )
+
 
 		self:finalize()
+
 	end 
 
 	function instance:collision( event )
@@ -115,7 +112,7 @@ function M.new( instance, options )
 		local other = event.other
 		local vx, vy = self:getLinearVelocity()
 		if phase == "began" then 
-			if other.type == "water" or other.name == "boundary" then
+			if other.type == "water" then
 					instance:died()
 			end
 

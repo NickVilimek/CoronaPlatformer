@@ -11842,18 +11842,20 @@
                  "name":"player",
                  "properties":
                     {
-                     "jumping":false
+                     "jumping":false,
+                     "world":"world1"
                     },
                  "propertytypes":
                     {
-                     "jumping":"bool"
+                     "jumping":"bool",
+                     "world":"string"
                     },
                  "rotation":0,
                  "type":"player",
                  "visible":true,
                  "width":80,
-                 "x":2056.03,
-                 "y":1460.55
+                 "x":2045.03,
+                 "y":1428.55
                 }],
          "opacity":1,
          "type":"objectgroup",

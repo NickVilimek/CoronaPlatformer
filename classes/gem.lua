@@ -17,11 +17,12 @@ function M.new( instance )
 		local phase, player = event.phase, event.other
 
 		if phase == "began" and player.name == "player" then
+			
 
 			fx.fadeOut( function()
 				composer.gotoScene( "nextLevel",
 			 	{params = {world = world, nextLevel = nextLevel}} )
-			end, 300, 300 )
+			end, 200, 200 )
 
 		end
 	end

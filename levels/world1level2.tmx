@@ -1100,6 +1100,7 @@
   <object id="507" name="player" type="player" gid="21" x="411.03" y="1465.55" width="80" height="110">
    <properties>
     <property name="jumping" type="bool" value="false"/>
+    <property name="world" value="world1"/>
    </properties>
   </object>
   <object id="1537" name="gem" type="gem" gid="24" x="1822.25" y="913.75" width="88" height="80">
