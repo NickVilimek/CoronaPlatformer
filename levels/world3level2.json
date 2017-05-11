@@ -15180,7 +15180,7 @@
                  "type":"lava",
                  "visible":true,
                  "width":128,
-                 "x":608,
+                 "x":610,
                  "y":984
                 }, 
                 {
@@ -15554,7 +15554,7 @@
                  "name":"gem",
                  "properties":
                     {
-                     "nextLevel":"levels\/world3level1.json",
+                     "nextLevel":"levels\/world3level3.json",
                      "world":"world3"
                     },
                  "propertytypes":

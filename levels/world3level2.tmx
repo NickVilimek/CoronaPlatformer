@@ -1660,7 +1660,7 @@
     <property name="friction" type="float" value="0.05"/>
    </properties>
   </object>
-  <object id="1624" type="lava" gid="11" x="608" y="984" width="128" height="128" rotation="90">
+  <object id="1624" type="lava" gid="11" x="610" y="984" width="128" height="128" rotation="90">
    <properties>
     <property name="bodyType" value="static"/>
     <property name="friction" type="float" value="0.05"/>
@@ -1766,7 +1766,7 @@
   </object>
   <object id="1603" name="gem" type="gem" gid="2" x="128" y="192" width="88" height="80">
    <properties>
-    <property name="nextLevel" value="levels/world3level1.json"/>
+    <property name="nextLevel" value="levels/world3level3.json"/>
     <property name="world" value="world3"/>
    </properties>
   </object>

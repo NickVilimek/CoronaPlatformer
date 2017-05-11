@@ -94,13 +94,10 @@ function M.new( instance, options )
 	--Refreshes level 
 	function instance:died()
 		instance:setSequence( "dead" )
-		instance:play()
-
-		self:setLinearVelocity(0,0)
 
 		fx.fadeOut( function()
 				composer.gotoScene( "refresh", { params = { map = self.map, world = self.world } } )
-			end, 1000, 300 )
+			end, 200, 200 )
 
 
 		self:finalize()
@@ -112,7 +109,7 @@ function M.new( instance, options )
 		local other = event.other
 		local vx, vy = self:getLinearVelocity()
 		if phase == "began" then 
-			if other.type == "water" then
+			if other.type == "water" or other.type == "lava" then
 					instance:died()
 			end
 

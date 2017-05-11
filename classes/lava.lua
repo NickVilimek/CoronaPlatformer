@@ -6,7 +6,7 @@ local M = {}
 function M.new( instance )
 		
 	if not instance.bodyType then
-		physics.addBody( instance, "static", { isSensor = true } )
+		physics.addBody( instance, "dynamic", { isSensor = true } )
 	end
 
 	return instance
