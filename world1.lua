@@ -31,6 +31,7 @@ function scene:create( event )
 	player = map:findObject( "player" )
 	player.map = filename
 	player.world = "world1"
+	--print(filename)
 
 	sceneGroup:insert( map )
 
@@ -42,7 +43,7 @@ local function enterFrame( event )
 	if player and player.x and player.y then
 		local x, y = player:localToContent( 0, 0 )
 		x, y = display.contentCenterX - x, display.contentCenterY - y
-		map.x, map.y = map.x + x, map.y + y
+		map.x, map.y = map.x + x, map.y + y + 30
 	end
 end
 

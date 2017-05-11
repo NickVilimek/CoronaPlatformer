@@ -1,21 +1,23 @@
 local composer = require( "composer" )
 
 local scene = composer.newScene()
-local counter = 0
 
-
+--Navigates character to the next level
 function scene:show( event )
 
 	local phase = event.phase
-	local nextLevel = event.params.nextLevel
+
+	--Params are world and level
 	local world = event.params.world
+	local nextLevel = event.params.map
+	local options = { params = event.params }
 
 	local prevScene = composer.getSceneName( "previous" )
 
 	if ( phase == "will" ) then
 		composer.removeScene( prevScene )
  	elseif ( phase == "did" ) then
-		composer.gotoScene( world, { params = { map = nextLevel, world = world}  } )
+		composer.gotoScene( world, options )
 	end
 end
 

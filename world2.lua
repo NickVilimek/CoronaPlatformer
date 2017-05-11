@@ -19,7 +19,7 @@ function scene:create( event )
 	physics.start()
 	physics.setGravity( 0, 23 )
 	-- Load our map
-	local filename = event.params.map or "levels/world2level5.json"
+	local filename = event.params.map or "levels/world2level1.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
 	map = tiled.new( mapData, "levels" )
 	map.x,map.y = -600, -100

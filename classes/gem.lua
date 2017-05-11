@@ -7,6 +7,8 @@ function M.new( instance )
 	
 	local scene = composer.getScene( composer.getSceneName( "current" ) )
 
+	--World and nextlevel file are set in the map editor 
+	--and tracked here 
 	local world, nextLevel = instance.world, instance.nextLevel
 	
 	if not instance.bodyType then
@@ -16,10 +18,13 @@ function M.new( instance )
 	function instance:collision( event )
 		local phase, player = event.phase, event.other
 
+		--If it collides with the player 
 		if phase == "began" and player.name == "player" then
+			--Go to the next level
 			fx.fadeOut( function()
-				composer.gotoScene( "nextLevel",
-			 	{params = {world = world, nextLevel = nextLevel}} )
+				--Pass along world, level associated with gem to help navigate to next level
+				--goes to nextLevel.lua
+				composer.gotoScene( "nextLevel",{params = { world = world, map = nextLevel } } )
 			end, 200, 200 )
 
 		end

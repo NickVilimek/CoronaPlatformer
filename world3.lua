@@ -20,7 +20,7 @@ function scene:create( event )
 	physics.setGravity( 0, 20 )
 
 	-- Load our map
-	local filename = event.params.map or "levels/world3level4.json"
+	local filename = event.params.map or "levels/world3level1.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
 	map = tiled.new( mapData, "levels" )
 	map.x,map.y = display.contentCenterX - map.designedWidth/2, display.contentCenterY - map.designedHeight/2
@@ -32,7 +32,7 @@ function scene:create( event )
 	player = map:findObject( "player" )
 	player.filename = filename
 	player.map = filename
-	player.world = "world2"
+	player.world = "world3"
 
 	sceneGroup:insert( map )
 
@@ -44,7 +44,7 @@ local function enterFrame( event )
 	if player and player.x and player.y then
 		local x, y = player:localToContent( 0, 0 )
 		x, y = display.contentCenterX - x, display.contentCenterY - y
-		map.x, map.y = map.x + x, map.y + y
+		map.x, map.y = map.x + x, map.y + y + 80
 	end
 end
 

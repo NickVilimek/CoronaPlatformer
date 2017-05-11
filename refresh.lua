@@ -1,22 +1,18 @@
 
 local composer = require( "composer" )
-
-local prevScene = composer.getSceneName( "previous" )
-
 local scene = composer.newScene()
-
-local counter = 0
 
 function scene:show( event )
 
-	counter = counter + 1
-
 	local phase = event.phase
+	local world = event.params.world
+	
 	local options = { params = event.params }
+	
 	if ( phase == "will" ) then
-		composer.removeScene( prevScene )
+		composer.removeScene( world )
 	elseif ( phase == "did" ) then
-		composer.gotoScene( prevScene, options )
+		composer.gotoScene( world, options )
 	end
 end
 

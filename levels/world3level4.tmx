@@ -2339,7 +2339,7 @@
   </object>
   <object id="1603" name="gem" type="gem" gid="2" x="1328" y="-16" width="88" height="80">
    <properties>
-    <property name="nextLevel" value="levels/world3level1.json"/>
+    <property name="nextLevel" value="levels/world3level5.json"/>
     <property name="world" value="world3"/>
    </properties>
   </object>

@@ -7,11 +7,12 @@ local M = {}
 function M.new( instance, options )
 	local scene = composer.getScene( composer.getSceneName( "current" ) )
 
-	--Set some custom properties 
+	--Grab properties of the player
 	instance.isVisible = false
 	local parent = instance.parent
-	local x, y = instance.x, instance.y
-	local world = instance.world
+	local x, y = instance.x, instance.y --this is set from the map editor
+	local world = instance.world --this is set from the map editor
+	print(world)
 
 	-- Load spritesheet
 	local sheetData = { width = 80, height = 110, numFrames = 27, sheetContentWidth = 720, sheetContentHeight = 330 }
@@ -29,6 +30,9 @@ function M.new( instance, options )
 	--Add Physics
 	physics.addBody( instance, "dynamic", { density = 3, bounce = 0, friction =  5.0 } )
 	instance.isFixedRotation = true
+
+
+	--Key handling - left, right, jump 
 
 	local max, acceleration, left, right, flip = 400, 2200, 0, 0, 0
 	local lastEvent = {}
@@ -63,6 +67,7 @@ function M.new( instance, options )
 		lastEvent = event
 	end
 
+	--For jumping
 	function instance:jump()
 		if not self.jumping then
 			self:applyLinearImpulse( 0, -600 )
@@ -73,6 +78,9 @@ function M.new( instance, options )
 
 	--Moves character the correct ammount
 	local function enterFrame(event)
+
+		--World 2 scrolls automatically
+		--This checks to make sure player is still in the screen boundaries
 		if world == "world2" then 
 			local _x, _y = instance:localToContent(0,0)
 			if(_y > 500 or _x < -340) then
@@ -80,6 +88,7 @@ function M.new( instance, options )
 			end
 		end 
 
+		--Handles movement
 		local vx, vy = instance:getLinearVelocity()
 		local dx = right + left
 
@@ -87,7 +96,7 @@ function M.new( instance, options )
 		if ( dx < 0 and vx > -max ) or ( dx > 0 and vx < max ) then
 			instance:applyForce( dx or 0, 0, instance.x, instance.y )
 		end
-
+		--for flipping
 		instance.xScale = math.min( 1, math.max( instance.xScale + flip, -1 ) )
 	end
 
@@ -104,15 +113,21 @@ function M.new( instance, options )
 
 	end 
 
+	--Collison detection
+	--Note: collison with gem at the end of the level
+	--is handled in classes/gem.lua
 	function instance:collision( event )
 		local phase = event.phase
 		local other = event.other
 		local vx, vy = self:getLinearVelocity()
+
 		if phase == "began" then 
+			--Bodies that can kill the player
 			if other.type == "water" or other.type == "lava" then
-					instance:died()
+				instance:died()
 			end
 
+			--Landing on ground, handles sequence change
 			if self.jumping and vy > 0 then
 				-- Landed after jumping
 				self.jumping = false
